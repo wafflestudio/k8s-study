@@ -14,3 +14,4 @@ data:
     p, role:guam-admin, repositories, update, *, allow
     p, role:guam-admin, repositories, delete, *, allow
     g, guam, role:guam-admin
+    g, pfcjeong-study:k8s, role:guam-admin
