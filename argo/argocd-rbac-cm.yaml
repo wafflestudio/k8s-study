@@ -5,3 +5,12 @@ metadata:
     app.kubernetes.io/name: argocd-rbac-cm
     app.kubernetes.io/part-of: argocd
   name: argocd-rbac-cm
+data:
+  policy.csv: |
+    p, role:guam-admin, applications, *, guam/*, allow
+    p, role:guam-admin, clusters, get, *, allow
+    p, role:guam-admin, repositories, get, *, allow
+    p, role:guam-admin, repositories, create, *, allow
+    p, role:guam-admin, repositories, update, *, allow
+    p, role:guam-admin, repositories, delete, *, allow
+    g, guam, role:guam-admin
