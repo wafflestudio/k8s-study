@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: guam
+  namespace: argocd
+spec:
+  description: Guam Project
+  sourceRepos:
+    - 'https://github.com/wafflestudio/k8s-study'
+  destinations:
+    - namespace: guam
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  orphanedResources:
+    warn: false
