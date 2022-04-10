@@ -9,3 +9,15 @@ data:
   accounts.snutt: login
   accounts.guam: login
   # argocd account update-password --account $ACCOUNT_NAME --new-password $NEW_PASSWORD --current-password $ADMIN_PASSWORD
+  url: http://a42d16bf6f1c24d64a324b68cc38d470-827189050.ap-northeast-2.elb.amazonaws.com
+  dex.config: |
+    connectors:
+      # GitHub example
+      - type: github
+        id: github
+        name: GitHub
+        config:
+          clientID: 53ba1db7146e40de37f0
+          clientSecret: b28ae19011e5f30e016410bc48b4f83ced457807
+          orgs:
+          - name: pfcjeong-study
