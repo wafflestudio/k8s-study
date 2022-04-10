@@ -5,3 +5,7 @@ metadata:
     app.kubernetes.io/name: argocd-cm
     app.kubernetes.io/part-of: argocd
   name: argocd-cm
+data:
+  accounts.snutt: login
+  accounts.guam: login
+  # argocd account update-password --account $ACCOUNT_NAME --new-password $NEW_PASSWORD --current-password $ADMIN_PASSWORD
