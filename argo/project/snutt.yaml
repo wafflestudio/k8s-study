@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: snutt
+  namespace: argocd
+spec:
+  description: Snutt Project
+  sourceRepos:
+    - 'https://github.com/wafflestudio/k8s-study'
+  destinations:
+    - namespace: snutt
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  orphanedResources:
+    warn: false
+  roles:
+    - name: admin
+      description: Admin for snutt
+      policies:
+      - p, proj:snutt:admin, applications, *, snutt/*, allow
+      - p, proj:snutt:admin, clusters, get, *, allow
+      - p, proj:snutt:admin, repositories, get, *, allow
+      - p, proj:snutt:admin, repositories, create, *, allow
+      - p, proj:snutt:admin, repositories, update, *, allow
+      - p, proj:snutt:admin, repositories, delete, *, allow
+      groups:
+      - snutt
