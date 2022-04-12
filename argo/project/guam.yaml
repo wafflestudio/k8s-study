@@ -11,7 +11,26 @@ spec:
     - namespace: guam
       server: https://kubernetes.default.svc
   clusterResourceWhitelist:
-    - group: '*'
-      kind: '*'
+    - group: ''
+      kind: Namespace
+  namespaceResourceBlacklist:
+    - group: ''
+      kind: ResourceQuota
+    - group: ''
+      kind: LimitRange
+    - group: ''
+      kind: NetworkPolicy
   orphanedResources:
     warn: false
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: guam
+  namespace: guam
+spec:
+  hard:
+    requests.cpu: 250m
+    limits.cpu: 250m
+    requests.memory: 512Mi
+    limits.memory: 512Mi
