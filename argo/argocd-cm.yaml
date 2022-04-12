@@ -5,3 +5,16 @@ metadata:
     app.kubernetes.io/name: argocd-cm
     app.kubernetes.io/part-of: argocd
   name: argocd-cm
+  namespace: argocd
+data:
+  url: http://a42d16bf6f1c24d64a324b68cc38d470-827189050.ap-northeast-2.elb.amazonaws.com
+  dex.config: |
+    connectors:
+      - type: github
+        id: github
+        name: GitHub
+        config:
+          clientID: $oidc.auth0.clientId
+          clientSecret: $oidc.auth0.clientSecret
+          orgs:
+          - name: wafflestudio
