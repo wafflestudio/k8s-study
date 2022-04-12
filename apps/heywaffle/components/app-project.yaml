@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: heywaffle
+  namespace: argocd
+spec:
+  description: HeyWaffle Project
+  sourceRepos:
+    - '*'
+  destinations:
+    - namespace: heywaffle
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: ''
+      kind: Namespace
+  namespaceResourceBlacklist:
+    - group: ''
+      kind: ResourceQuota
+    - group: ''
+      kind: LimitRange
+    - group: ''
+      kind: NetworkPolicy
+  orphanedResources:
+    warn: false
+  roles:
+    - name: admin
+      description: Admin for Team HeyWaffle
+      policies:
+        - p, proj:heywaffle:admin, applications, *, heywaffle/*, allow
+        - p, proj:heywaffle:admin, clusters, get, *, allow
+        - p, proj:heywaffle:admin, repositories, get, *, allow
+        - p, proj:heywaffle:admin, repositories, create, *, allow
+        - p, proj:heywaffle:admin, repositories, update, *, allow
+        - p, proj:heywaffle:admin, repositories, delete, *, allow
+      groups:
+        - wafflestudio:k8s
