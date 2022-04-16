@@ -1,0 +1,6 @@
+namespace: db-mongodb
+
+resources:
+  - components/namespace.yaml
+  - components/service.yaml
+  - components/stateful-set.yaml
