@@ -34,5 +34,3 @@ spec:
         - p, proj:guam:admin, repositories, delete, *, allow
       groups:
         - wafflestudio:Guam
-
-

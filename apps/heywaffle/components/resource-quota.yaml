@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: heywaffle
+  namespace: heywaffle
+spec:
+  hard:
+    requests.cpu: 250m
+    limits.cpu: 250m
+    requests.memory: 256Mi
+    limits.memory: 256Mi
