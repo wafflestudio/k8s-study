@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: mongodb
+  namespace: argocd
+spec:
+  description: MongoDB
+  sourceRepos:
+    - 'https://github.com/wafflestudio/k8s-study'
+  destinations:
+    - namespace: db-mongodb
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: ''
+      kind: Namespace
+  orphanedResources:
+    warn: false
+  roles:
+    - name: admin
+      description: Admin for MongoDB
+      policies:
+        - p, proj:mongodb:admin, applications, *, mongodb/*, allow
+        - p, proj:mongodb:admin, clusters, get, *, allow
+        - p, proj:mongodb:admin, repositories, get, *, allow
+        - p, proj:mongodb:admin, repositories, create, *, allow
+        - p, proj:mongodb:admin, repositories, update, *, allow
+        - p, proj:mongodb:admin, repositories, delete, *, allow
+      groups:
+        - wafflestudio:k8s

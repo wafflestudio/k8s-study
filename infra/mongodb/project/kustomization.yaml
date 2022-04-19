@@ -1,5 +1,3 @@
 resources:
   - components/namespace.yaml
-  - components/resource-quota.yaml
   - components/app-project.yaml
-  - components/node-port.yaml
