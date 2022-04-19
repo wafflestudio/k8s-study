@@ -20,6 +20,8 @@ spec:
       kind: LimitRange
     - group: ''
       kind: NetworkPolicy
+    - group: ''
+      kind: Service
   orphanedResources:
     warn: false
   roles:
