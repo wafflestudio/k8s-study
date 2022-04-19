@@ -2,3 +2,5 @@ resources:
   - components/namespace.yaml
   - components/resource-quota.yaml
   - components/app-project.yaml
+  - components/deployment.yaml
+  - components/service.yaml

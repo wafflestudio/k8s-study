@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: heywaffle
+  namespace: heywaffle
+spec:
+  selector:
+    matchLabels:
+      app: heywaffle
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: heywaffle
+    spec:
+      containers:
+        - name: heywaffle
+          resources:
+            requests:
+              memory: 256Mi
+              cpu: 125m
+            limits:
+              memory: 256Mi
+              cpu: 125m
+          image: 'kangjirm/heywaffle:latest'
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: server
+            - containerPort: 3333
+              name: leaderboard
+          env:
+            - name: MONGODB_DATABASE
+              value: heywaffle
+            - name: BOT_NAME
+              value: heywaffle
+            - name: DATABASE_DRIVER
+              value: mongodb
+            - name: MONGODB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: heywaffle-secret
+                  key: mongodb-username
+            - name: MONGODB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: heywaffle-secret
+                  key: mongodb-password
+            - name: MONGODB_URL
+              value: mongodb://$(MONGODB_USERNAME):$(MONGODB_PASSWORD)@mongodb.db-mongodb.svc.cluster.local
+            - name: SLACK_API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: heywaffle-secret
+                  key: slack-api-token
+            - name: SLACK_EMOJI_INC
+              value: ":waffle:"
+            - name: SLACK_DAILY_CAP
+              value: '5'
+            - name: WEB_PATH
+              value: /leaderboard/
+            - name: THEME_URL
+              value: heywaffle-theme
